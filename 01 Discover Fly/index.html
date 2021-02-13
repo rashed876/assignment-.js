@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hotel Booking</title>
+     
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+     
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#"> </a></li>
+                <li><a href="#"> </a></li>
+                <li><a href="#"> </a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking hotel</h3>
+            <div class="input-group">
+                <label for="">hotel From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">hotel To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    
+                    <label id="teCet-total" for="">First Class $150</label>
+                    <input id="teCet-count" value = "0" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                 <span  onclick=" handleLowChange  ( 'teCet', true)" >+</span>
+                  <span  onclick="  handleLowChange  (  'teCet', false)"  >-</span> 
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label id="low-total" for="">Economy $100</label>
+                    <input id="low-count" value = "0" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                     <span  onclick="handleLowChange( 'low' , true)">+</span> 
+                     <span  onclick="handleLowChange(  'low', false)">-</span> 
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="total-price">$500</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p id="tex-amount">$50</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="grand-total">$550</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+    </section>
+    <script>
+        function handleLowChange( day, isAddU){
+                    
+            const teCetInput = document.getElementById(day+'-count');
+            const teCetCount = parseInt(teCetInput.value)
+            
+            let teCetNewCount = teCetCount;
+            if(isAddU == true){
+                teCetNewCount = teCetCount + 1;
+            }
+            if(isAddU == false && teCetCount > 0){
+                teCetNewCount = teCetCount - 1;
+            }
+            
+            teCetInput.value = teCetNewCount;
+            
+            let  teCetTotal  = 0;
+            if(day == 'teCet'){
+                teCetTotal  =  teCetNewCount * 150;
+            }
+            if(day == 'low'){
+                teCetTotal   = teCetNewCount * 100;
+            }
+            document.getElementById(day +'-total').innerText = "Economy$" +teCetTotal
+             calculateTotal();
+            
+
+        }
+
+        function calculateTotal(){
+                const teCetInput = document.getElementById('teCet-count');
+                const teCetCount = parseInt(teCetInput.value);
+
+                    const lowInput = document.getElementById('low-count');
+                    const lowCount = parseInt(lowInput.value);
+                
+                
+
+                
+                const totalPrice = teCetCount * 150 + lowCount * 100;
+               
+                    const tex = Math.round (totalPrice  * 0.1);
+                    document.getElementById('tex-amount').innerText = "$" + tex ;
+
+                     document.getElementById('total-price').innerText = '$' + totalPrice;  
+                
+
+                     const grandTotal = totalPrice + tex;
+                    document.getElementById('grand-total').innerText = "$" + grandTotal;
+        
+
+                 }   
+        
+            
+    </script>
+</body>
+
+</html>
+
+
